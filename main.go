@@ -3,9 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/mrityunjaygr8/stanford_ds_algo/matric"
-
-	"time"
+	closestpoints "github.com/mrityunjaygr8/stanford_ds_algo/closestPoints"
 )
 
 func main() {
@@ -34,35 +32,56 @@ func main() {
 	// Inversion End
 
 	// Strassen's Sub Cubic Matrix Multuplication start
-	// s1, s2 := matric.Matrix{{2, 3, 4, 5, 6, 7, 8, 9}, {3, 4, 5, 6, 7, 8, 9, 0}, {4, 5, 6, 7, 8, 9, 0, 1}, {5, 6, 7, 8, 9, 0, 1, 2}, {6, 7, 8, 9, 0, 1, 2, 3}, {7, 8, 9, 0, 1, 2, 3, 4}, {8, 9, 0, 1, 2, 3, 4, 5}, {9, 0, 1, 2, 3, 4, 5, 6}}, matric.Matrix{{3, 4, 5, 6, 7, 8, 9, 0}, {4, 5, 6, 7, 8, 9, 0, 1}, {5, 6, 7, 8, 9, 0, 1, 2}, {6, 7, 8, 9, 0, 1, 2, 3}, {7, 8, 9, 0, 1, 2, 3, 4}, {8, 9, 0, 1, 2, 3, 4, 5}, {9, 0, 1, 2, 3, 4, 5, 6}, {0, 1, 2, 3, 4, 5, 6, 7}}
-	// s1, s2 := matric.Matrix{{1, 1}, {1, 1}}, matric.Matrix{{1, 1}, {1, 1}}
-	// s1, s2 := matric.Matrix{{2, 3}, {3, 4}}, matric.Matrix{{3, 4}, {4, 5}}
-	s1, s2 := matric.CreateArrays(512)
-	matric.PrintMatrix(s1)
-	matric.PrintMatrix(s2)
-	t := time.Now()
-	r := matric.Naive(s1, s2)
-	fmt.Println("time taken", time.Since(t))
-	matric.PrintMatrix(r)
-	t1 := time.Now()
-	r1 := matric.Strassen(s1, s2)
-	fmt.Println("time taken", time.Since(t1))
-	matric.PrintMatrix(r1)
-	// m2 := matric.Matrix{{1, 2, 3, 4}, {2, 3, 4, 5}, {3, 4, 5, 6}, {4, 5, 6, 7}}
-	// matric.PrintMatrix(m2)
-	// a, b, c, d := matric.Breakup(m2)
-	// fmt.Println("a\t")
-	// matric.PrintMatrix(a)
-	// fmt.Println("b\t")
-	// matric.PrintMatrix(b)
-	// fmt.Println("c\t")
-	// matric.PrintMatrix(c)
-	// fmt.Println("d\t")
-	// matric.PrintMatrix(d)
-	// fmt.Println(small1, small2, small3, small4)
-	// m3 := matric.Matrix{{1, 2, 3, 4, 5}, {2, 3, 4, 5, 6}, {3, 4, 5, 6, 7}, {4, 5, 6, 7, 8}}
-	// small3, small4 := matric.Breakup(m3)
-	// fmt.Println(small3, small4)
+	// // s1, s2 := matric.Matrix{{2, 3, 4, 5, 6, 7, 8, 9}, {3, 4, 5, 6, 7, 8, 9, 0}, {4, 5, 6, 7, 8, 9, 0, 1}, {5, 6, 7, 8, 9, 0, 1, 2}, {6, 7, 8, 9, 0, 1, 2, 3}, {7, 8, 9, 0, 1, 2, 3, 4}, {8, 9, 0, 1, 2, 3, 4, 5}, {9, 0, 1, 2, 3, 4, 5, 6}}, matric.Matrix{{3, 4, 5, 6, 7, 8, 9, 0}, {4, 5, 6, 7, 8, 9, 0, 1}, {5, 6, 7, 8, 9, 0, 1, 2}, {6, 7, 8, 9, 0, 1, 2, 3}, {7, 8, 9, 0, 1, 2, 3, 4}, {8, 9, 0, 1, 2, 3, 4, 5}, {9, 0, 1, 2, 3, 4, 5, 6}, {0, 1, 2, 3, 4, 5, 6, 7}}
+	// // s1, s2 := matric.Matrix{{1, 1}, {1, 1}}, matric.Matrix{{1, 1}, {1, 1}}
+	// // s1, s2 := matric.Matrix{{2, 3}, {3, 4}}, matric.Matrix{{3, 4}, {4, 5}}
+	// s1, s2 := matric.CreateArrays(512)
+	// matric.PrintMatrix(s1)
+	// matric.PrintMatrix(s2)
+	// t := time.Now()
+	// r := matric.Naive(s1, s2)
+	// fmt.Println("time taken", time.Since(t))
+	// matric.PrintMatrix(r)
+	// t1 := time.Now()
+	// r1 := matric.Strassen(s1, s2)
+	// fmt.Println("time taken", time.Since(t1))
+	// matric.PrintMatrix(r1)
+	// // m2 := matric.Matrix{{1, 2, 3, 4}, {2, 3, 4, 5}, {3, 4, 5, 6}, {4, 5, 6, 7}}
+	// // matric.PrintMatrix(m2)
+	// // a, b, c, d := matric.Breakup(m2)
+	// // fmt.Println("a\t")
+	// // matric.PrintMatrix(a)
+	// // fmt.Println("b\t")
+	// // matric.PrintMatrix(b)
+	// // fmt.Println("c\t")
+	// // matric.PrintMatrix(c)
+	// // fmt.Println("d\t")
+	// // matric.PrintMatrix(d)
+	// // fmt.Println(small1, small2, small3, small4)
+	// // m3 := matric.Matrix{{1, 2, 3, 4, 5}, {2, 3, 4, 5, 6}, {3, 4, 5, 6, 7}, {4, 5, 6, 7, 8}}
+	// // small3, small4 := matric.Breakup(m3)
+	// // fmt.Println(small3, small4)
 
 	// Strassen's Sub Cubic Matrix Multuplication end
+
+	// Closest Point Pairs start
+	fmt.Println("All points")
+	points := closestpoints.CreatePoints(12)
+	points.Print()
+
+	// p1, p2 := closestpoints.GetClosestPointPair(points)
+	p1, p2 := closestpoints.Naive(points)
+	fmt.Println("p1")
+	p1.Print()
+	fmt.Println("p2")
+	p2.Print()
+
+	fmt.Println("\n\nNow using closestPoints")
+	p3, p4 := closestpoints.GetClosestPointPair(points)
+	fmt.Println("p3")
+	p3.Print()
+	fmt.Println("p4")
+	p4.Print()
+
+	// Closest Point Pairs end
 }
