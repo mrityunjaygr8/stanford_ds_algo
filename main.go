@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	closestpoints "github.com/mrityunjaygr8/stanford_ds_algo/closestPoints"
 )
@@ -66,22 +67,25 @@ func main() {
 
 	// Closest Point Pairs start
 	fmt.Println("All points")
-	points := closestpoints.CreatePoints(12)
+	points := closestpoints.CreatePoints(10)
 	points.Print()
 
-	// p1, p2 := closestpoints.GetClosestPointPair(points)
-	p1, p2 := closestpoints.Naive(points)
-	fmt.Println("p1")
-	p1.Print()
-	fmt.Println("p2")
-	p2.Print()
-
 	fmt.Println("\n\nNow using closestPoints")
-	p3, p4 := closestpoints.GetClosestPointPair(points)
+	t_d_c := time.Now()
+	p3, p4 := closestpoints.D_C_util(points)
+	fmt.Println(time.Since(t_d_c))
 	fmt.Println("p3")
 	p3.Print()
 	fmt.Println("p4")
 	p4.Print()
+
+	t_naive := time.Now()
+	p1, p2 := closestpoints.Naive(points)
+	fmt.Println(time.Since(t_naive))
+	fmt.Println("p1")
+	p1.Print()
+	fmt.Println("p2")
+	p2.Print()
 
 	// Closest Point Pairs end
 }

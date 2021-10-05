@@ -1,6 +1,6 @@
 package closestpoints
 
-import "fmt"
+// import "fmt"
 
 func Naive(points Points) (Point, Point) {
 	l := points.Len()
@@ -10,7 +10,7 @@ func Naive(points Points) (Point, Point) {
 	for x := 0; x < l-1; x++ {
 		for y := x + 1; y < l; y++ {
 			d_new := getDistance(points.Points[x], points.Points[y])
-			fmt.Println(points.Points[x], points.Points[y], d_new)
+			// fmt.Println(points.Points[x], points.Points[y], d_new)
 			if d_new < d {
 				p1 = points.Points[x]
 				p2 = points.Points[y]

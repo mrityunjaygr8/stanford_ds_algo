@@ -34,7 +34,7 @@ func CreatePoints(count int) Points {
 	rand.Seed(time.Now().UnixNano())
 	points := make([]Point, count)
 	for x := 0; x < count; x++ {
-		points[x] = Point{X: rand.Intn(255), Y: rand.Intn(255)}
+		points[x] = Point{X: rand.Intn(10000), Y: rand.Intn(10000)}
 	}
 
 	return Points{Points: points}
